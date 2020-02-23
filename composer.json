@@ -1,0 +1,24 @@
+{
+    "name": "flysystem/mime-type-resolver",
+    "description": "Mime-type resolver for Flysystem",
+    "require-dev": {
+        "phpunit/phpunit": "^8.5",
+        "phpstan/phpstan": "^0.12.11"
+    },
+    "autoload": {
+        "psr-4": {
+            "Flysystem\\MimeTypeDetection\\": "src"
+        }
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Frank de Jonge",
+            "email": "info@frankdejonge.nl"
+        }
+    ],
+    "require": {
+        "php": "^7.2",
+        "ext-fileinfo": "*"
+    }
+}
