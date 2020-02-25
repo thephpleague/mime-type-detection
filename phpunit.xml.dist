@@ -9,6 +9,7 @@
         <whitelist>
             <directory>./src/</directory>
             <exclude>
+                <directory suffix=".php">./src/Generation</directory>
                 <directory suffix="Test.php">./src/</directory>
                 <directory suffix="Fixture.php">./src/</directory>
             </exclude>

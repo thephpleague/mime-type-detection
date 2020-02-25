@@ -19,3 +19,68 @@ This package supplies a generic mime-type detection interface with a
 ```bash
 composer require flysystem/mime-type-detection
 ```
+
+### Detectors
+
+Finfo with extension fallback:
+
+```php
+$detector = new Flysystem\MimeTypeDetection\FinfoMimeTypeDetector();
+
+// Detect by contents, fall back to detection by extension.
+$mimeType = $detector->detectMimeType('some/path.php', 'string contents');
+
+// Detect by contents only, no extension fallback.
+$mimeType = $detector->detectMimeTypeFromBuffer('string contents');
+
+// Detect by actual file, no extension fallback.
+$mimeType = $detector->detectMimeTypeFromFile('existing/path.php');
+
+// Only detect by extension
+$mimeType = $detector->detectMimeTypeFromPath('any/path.php');
+```
+
+Extension only:
+
+```php
+$detector = new Flysystem\MimeTypeDetection\ExtensionMimeTypeDetector();
+
+// Only detect by extension
+$mimeType = $detector->detectMimeType('some/path.php', 'string contents');
+
+// Always returns null
+$mimeType = $detector->detectMimeTypeFromBuffer('string contents');
+
+// Only detect by extension
+$mimeType = $detector->detectMimeTypeFromFile('existing/path.php');
+
+// Only detect by extension
+$mimeType = $detector->detectMimeTypeFromPath('any/path.php');
+```
+
+## Extension mime-type lookup
+
+As a fallback for `finfo` based lookup, an extension map
+is used to determine the mime-type. There is an advised implementation
+shipped, which is generated from information collected by the npm
+package [mime-db](https://www.npmjs.com/package/mime-db).
+
+### Provided extension maps
+
+Generated:
+
+```php
+$map = new Flysystem\MimeTypeDetection\GeneratedExtensionToMimeTypeMap();
+
+// string mime-type or NULL
+$mimeType = $map->lookupMimeType('png');
+```
+
+Empty:
+
+```php
+$map = new Flysystem\MimeTypeDetection\EmptyExtensionToMimeTypeMap();
+
+// Always returns NULL
+$mimeType = $map->lookupMimeType('png');
+```
