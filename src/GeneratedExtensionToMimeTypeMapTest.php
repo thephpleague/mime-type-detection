@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Flysystem\MimeTypeDetection;
 
+use Generator;
 use PHPUnit\Framework\TestCase;
 
 class GeneratedExtensionToMimeTypeMapTest extends TestCase
@@ -19,7 +20,7 @@ class GeneratedExtensionToMimeTypeMapTest extends TestCase
         $this->assertEquals($expectedMimeType, $actual);
     }
 
-    public function expectedLookupResults()
+    public function expectedLookupResults(): Generator
     {
         yield ['jpg', 'image/jpeg'];
         yield ['svg', 'image/svg+xml'];
