@@ -1,5 +1,6 @@
 * text=auto
 
+phpstan.neon export-ignore
 bin export-ignore
 src/Generation export-ignore
 test_files export-ignore
