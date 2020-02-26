@@ -13,11 +13,6 @@ class ExtensionToMimeTypeMapGenerator
      */
     private $provider;
 
-    /**
-     * @var string
-     */
-    private $className;
-
     public function __construct(MimeTypeProvider $provider)
     {
         $this->provider = $provider;
