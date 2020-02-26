@@ -1,9 +1,9 @@
 <?php
 
-use Flysystem\MimeTypeDetection\Generation\CombinedMimeTypeProvider;
-use Flysystem\MimeTypeDetection\Generation\ExtensionToMimeTypeMapGenerator;
-use Flysystem\MimeTypeDetection\Generation\FlysystemProvidedMimeTypeProvider;
-use Flysystem\MimeTypeDetection\Generation\JsHttpMimeDBMimeTypeProvider;
+use League\MimeTypeDetection\Generation\CombinedMimeTypeProvider;
+use League\MimeTypeDetection\Generation\ExtensionToMimeTypeMapGenerator;
+use League\MimeTypeDetection\Generation\FlysystemProvidedMimeTypeProvider;
+use League\MimeTypeDetection\Generation\JsHttpMimeDBMimeTypeProvider;
 
 include __DIR__.'/../vendor/autoload.php';
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Flysystem\MimeTypeDetection;
+namespace League\MimeTypeDetection;
 
 class GeneratedExtensionToMimeTypeMap implements ExtensionToMimeTypeMap
 {

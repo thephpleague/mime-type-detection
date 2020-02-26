@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Flysystem\MimeTypeDetection;
+namespace League\MimeTypeDetection;
 
 use PHPUnit\Framework\TestCase;
 

@@ -1,5 +1,5 @@
 {
-    "name": "flysystem/mime-type-detection",
+    "name": "league/mime-type-detection",
     "description": "Mime-type detection for Flysystem",
     "require-dev": {
         "phpunit/phpunit": "^8.5",
@@ -7,7 +7,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Flysystem\\MimeTypeDetection\\": "src"
+            "League\\MimeTypeDetection\\": "src"
         }
     },
     "license": "MIT",

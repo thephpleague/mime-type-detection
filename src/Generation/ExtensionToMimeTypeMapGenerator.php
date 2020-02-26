@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Flysystem\MimeTypeDetection\Generation;
+namespace League\MimeTypeDetection\Generation;
 
 use const PHP_EOL;
 
