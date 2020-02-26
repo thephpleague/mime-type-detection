@@ -1,12 +1,12 @@
 ## League Mime Type Detection
 
 [![Author](https://img.shields.io/badge/author-@frankdejonge-blue.svg)](https://twitter.com/frankdejonge)
-[![Source Code](https://img.shields.io/badge/source-league%2Fmime--type--detection-blue.svg)](https://github.com/leaguephp/mime-type-detection)
-[![Latest Version](https://img.shields.io/github/tag/league/mime-type-detection.svg)](https://github.com/league/mime-type-detection/releases)
-[![Software License](https:////img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/league/mime-type-detection/blob/master/LICENSE)
-[![Build Status](https://travis-ci.org/league/mime-type-detection.svg?branch=master)](https://travis-ci.org/league/mime-type-detection)
-[![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/league/mime-type-detection.svg)](https://scrutinizer-ci.com/g/league/mime-type-detection/code-structure)
-[![Quality Score](https://img.shields.io/scrutinizer/g/league/mime-type-detection.svg)](https://scrutinizer-ci.com/g/league/mime-type-detection)
+[![Source Code](https://img.shields.io/badge/source-league%2Fmime--type--detection-blue.svg)](https://github.com/thephpleague/mime-type-detection)
+[![Latest Version](https://img.shields.io/github/tag/league/mime-type-detection.svg)](https://github.com/thephpleague/mime-type-detection/releases)
+[![Software License](https:////img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/thephpleague/mime-type-detection/blob/master/LICENSE)
+[![Build Status](https://travis-ci.org/thephpleague/mime-type-detection.svg?branch=master)](https://travis-ci.org/thephpleague/mime-type-detection)
+[![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/thephpleague/mime-type-detection.svg)](https://scrutinizer-ci.com/g/thephpleague/mime-type-detection/code-structure)
+[![Quality Score](https://img.shields.io/scrutinizer/g/thephpleague/mime-type-detection.svg)](https://scrutinizer-ci.com/g/thephpleague/mime-type-detection)
 [![Total Downloads](https://img.shields.io/packagist/dt/league/mime-type-detection.svg)](https://packagist.org/packages/league/mime-type-detection)
 ![php 7.2+](https://img.shields.io/badge/php-min%207.2-red.svg)
 
