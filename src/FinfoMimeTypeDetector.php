@@ -32,7 +32,7 @@ class FinfoMimeTypeDetector implements MimeTypeDetector
     public function detectMimeType(string $path, $contents): ?string
     {
         $mimeType = is_string($contents)
-            ? ($this->finfo->buffer($contents) ?: null)
+            ? (@$this->finfo->buffer($contents) ?: null)
             : null;
 
         if ($mimeType !== null && ! in_array($mimeType, self::INCONCLUSIVE_MIME_TYPES)) {
@@ -51,12 +51,12 @@ class FinfoMimeTypeDetector implements MimeTypeDetector
 
     public function detectMimeTypeFromFile(string $path): ?string
     {
-        return $this->finfo->file($path) ?: null;
+        return @$this->finfo->file($path) ?: null;
     }
 
     public function detectMimeTypeFromBuffer(string $contents): ?string
     {
-        return $this->finfo->buffer($contents) ?: null;
+        return @$this->finfo->buffer($contents) ?: null;
     }
 }
 
