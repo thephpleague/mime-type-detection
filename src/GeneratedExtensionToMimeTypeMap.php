@@ -95,6 +95,7 @@ class GeneratedExtensionToMimeTypeMap implements ExtensionToMimeTypeMap
         'mxf' => 'application/mxf',
         'nq' => 'application/n-quads',
         'nt' => 'application/n-triples',
+        'cjs' => 'application/node',
         'bin' => 'application/octet-stream',
         'dms' => 'application/octet-stream',
         'lrf' => 'application/octet-stream',
