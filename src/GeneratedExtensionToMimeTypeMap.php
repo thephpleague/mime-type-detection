@@ -889,6 +889,7 @@ class GeneratedExtensionToMimeTypeMap implements ExtensionToMimeTypeMap
         'woff2' => 'font/woff2',
         'exr' => 'image/aces',
         'apng' => 'image/apng',
+        'avif' => 'image/avif',
         'bmp' => 'image/bmp',
         'cgm' => 'image/cgm',
         'drle' => 'image/dicom-rle',
