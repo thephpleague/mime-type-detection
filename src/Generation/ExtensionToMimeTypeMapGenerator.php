@@ -27,6 +27,8 @@ class ExtensionToMimeTypeMapGenerator
             $mimeTypes[$mimeTypeForExtension->extension()] = PHP_EOL . "        '{$mimeTypeForExtension->extension()}' => '{$mimeTypeForExtension->mimeType()}',";
         }
 
+        ksort($mimeTypes, SORT_NATURAL);
+
         $template = file_get_contents(__DIR__ . '/ExtensionToMimeTypeMap.php.template');
         $template = str_replace('ExtensionToMimeTypeMapClass', $className, $template);
         $template = str_replace(' = []', ' = [' . join('', $mimeTypes) . PHP_EOL . '    ]', $template);
