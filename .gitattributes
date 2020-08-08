@@ -2,6 +2,8 @@
 
 phpstan.neon export-ignore
 bin export-ignore
+.github export-ignore
+.scrutinizer.yml export-ignore
 src/Generation export-ignore
 test_files export-ignore
 .gitattributes export-ignore
