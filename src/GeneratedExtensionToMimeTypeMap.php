@@ -8,8 +8,9 @@ class GeneratedExtensionToMimeTypeMap implements ExtensionToMimeTypeMap
 {
     /**
      * @var string[]
+     * @internal
      */
-    private const MIME_TYPES_FOR_EXTENSIONS = [
+    public const MIME_TYPES_FOR_EXTENSIONS = [
         '1km' => 'application/vnd.1000minds.decision-model+xml',
         '3dml' => 'text/vnd.in3d.3dml',
         '3ds' => 'image/x-3ds',

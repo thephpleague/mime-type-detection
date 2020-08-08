@@ -8,8 +8,9 @@ class ExtensionToMimeTypeMapClass implements ExtensionToMimeTypeMap
 {
     /**
      * @var string[]
+     * @internal
      */
-    private const MIME_TYPES_FOR_EXTENSIONS = [];
+    public const MIME_TYPES_FOR_EXTENSIONS = [];
 
     public function lookupMimeType(string $extension): ?string
     {
