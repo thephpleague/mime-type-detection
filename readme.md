@@ -4,7 +4,7 @@
 [![Source Code](https://img.shields.io/badge/source-league%2Fmime--type--detection-blue.svg)](https://github.com/thephpleague/mime-type-detection)
 [![Latest Version](https://img.shields.io/github/tag/thephpleague/mime-type-detection.svg)](https://github.com/thephpleague/mime-type-detection/releases)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/thephpleague/mime-type-detection/blob/master/LICENSE)
-[![Build Status](https://travis-ci.org/thephpleague/mime-type-detection.svg?branch=master)](https://travis-ci.org/thephpleague/mime-type-detection)
+[![Build Status](https://travis-ci.com/thephpleague/mime-type-detection.svg?branch=master)](https://travis-ci.com/thephpleague/mime-type-detection)
 [![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/thephpleague/mime-type-detection.svg)](https://scrutinizer-ci.com/g/thephpleague/mime-type-detection/code-structure)
 [![Quality Score](https://img.shields.io/scrutinizer/g/thephpleague/mime-type-detection.svg)](https://scrutinizer-ci.com/g/thephpleague/mime-type-detection)
 [![Total Downloads](https://img.shields.io/packagist/dt/league/mime-type-detection.svg)](https://packagist.org/packages/league/mime-type-detection)
