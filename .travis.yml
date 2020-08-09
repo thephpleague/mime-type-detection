@@ -16,7 +16,7 @@ matrix:
     - name: PHP 7.3 Lowest
       php: 7.3
       env: COMPOSER_OPTS="--prefer-lowest"
-    - name: PHP 8.4 Latest
+    - name: PHP 7.4 Latest
       php: 7.4
     - name: PHP 7.4 Lowest
       php: 7.4
