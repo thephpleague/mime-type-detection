@@ -1,47 +1,52 @@
 language: php
 
-cache:
-  directories:
-    - $HOME/.composer/cache/files
+dist: bionic
+
+env: COMPOSER_OPTS="" PHPUNIT_OPTS="--coverage-text --coverage-clover=coverage.xml"
 
 matrix:
   include:
-    - php: 7.2
-      dist: bionic
-      env: COMPOSER_OPTS=""
-    - php: 7.2
-      dist: bionic
+    - name: PHP 7.2 Latest
+      php: 7.2
+    - name: PHP 7.2 Lowest
+      php: 7.2
       env: COMPOSER_OPTS="--prefer-lowest"
-    - php: 7.3
-      dist: bionic
-      env: COMPOSER_OPTS=""
-    - php: 7.3
-      dist: bionic
+    - name: PHP 7.3 Latest
+      php: 7.3
+    - name: PHP 7.3 Lowest
+      php: 7.3
       env: COMPOSER_OPTS="--prefer-lowest"
-    - php: 7.4
-      dist: bionic
-      env: COMPOSER_OPTS=""
-    - php: 7.4
-      dist: bionic
+    - name: PHP 7.4 Latest
+      php: 7.4
+    - name: PHP 7.4 Lowest
+      php: 7.4
       env: COMPOSER_OPTS="--prefer-lowest"
-    - php: nightly
-      dist: bionic
-      env: COMPOSER_OPTS="--ignore-platform-reqs"
-    - php: nightly
-      dist: bionic
-      env: COMPOSER_OPTS="--ignore-platform-reqs --prefer-lowest"
-  allow_failures:
-    - php: nightly
-      env: COMPOSER_OPTS="--ignore-platform-reqs"
-    - php: nightly
-      env: COMPOSER_OPTS="--ignore-platform-reqs --prefer-lowest"
+    - name: PHP 8.0 Latest
+      php: nightly
+      env: COMPOSER_OPTS="--ignore-platform-reqs" PHPUNIT_OPTS=""
+      after_script: false
+    - name: PHP 8.0 Lowest
+      php: nightly
+      env: COMPOSER_OPTS="--ignore-platform-reqs --prefer-lowest" PHPUNIT_OPTS=""
+      after_script: false
+    - name: PHPStan Latest
+      php: 7.4
+      script: vendor/bin/phpstan analyse -l 6 src --no-progress
+      after_script: false
+    - name: PHPStan Lowest
+      php: 7.4
+      env: COMPOSER_OPTS="--prefer-lowest"
+      script: vendor/bin/phpstan analyse -l 6 src --no-progress
+      after_script: false
+
+before_install:
+  - composer self-update --2
 
 install:
-  - travis_retry composer update --prefer-dist $COMPOSER_OPTS
+  - travis_retry composer update --prefer-dist --no-progress $COMPOSER_OPTS
 
 script:
-  - vendor/bin/phpunit --coverage-text --coverage-clover=coverage.xml
-  - vendor/bin/phpstan analyse -l 6 src
+  - vendor/bin/phpunit $PHPUNIT_OPTS
 
 after_script:
   - wget https://scrutinizer-ci.com/ocular.phar
