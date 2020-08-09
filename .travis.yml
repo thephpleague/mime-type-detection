@@ -31,19 +31,19 @@ matrix:
       after_script: false
     - name: PHPStan Latest
       php: 7.4
-      script: vendor/bin/phpstan analyse -l 6 src
+      script: vendor/bin/phpstan analyse -l 6 src --no-progress
       after_script: false
     - name: PHPStan Lowest
       php: 7.4
       env: COMPOSER_OPTS="--prefer-lowest"
-      script: vendor/bin/phpstan analyse -l 6 src
+      script: vendor/bin/phpstan analyse -l 6 src --no-progress
       after_script: false
 
 before_install:
   - composer self-update --2
 
 install:
-  - travis_retry composer update --prefer-dist $COMPOSER_OPTS
+  - travis_retry composer update --prefer-dist --no-progress $COMPOSER_OPTS
 
 script:
   - vendor/bin/phpunit $PHPUNIT_OPTS
