@@ -38,7 +38,7 @@ class FinfoMimeTypeDetectorTest extends TestCase
 
         $mimeType = $this->detector->detectMimeType('flysystem.svg', $contents);
 
-        $this->assertEquals('image/svg', $mimeType);
+        $this->assertStringStartsWith('image/svg', $mimeType);
     }
 
     /**
@@ -51,7 +51,7 @@ class FinfoMimeTypeDetectorTest extends TestCase
 
         $mimeType = $this->detector->detectMimeTypeFromBuffer($contents);
 
-        $this->assertEquals('image/svg', $mimeType);
+        $this->assertStringStartsWith('image/svg', $mimeType);
     }
 
     /**
@@ -61,7 +61,7 @@ class FinfoMimeTypeDetectorTest extends TestCase
     {
         $mimeType = $this->detector->detectMimeType('flysystem.svg', '');
 
-        $this->assertEquals('image/svg+xml', $mimeType);
+        $this->assertStringStartsWith('image/svg+xml', $mimeType);
     }
 
     /**
