@@ -71,7 +71,7 @@ class FinfoMimeTypeDetectorTest extends TestCase
     {
         $mimeType = $this->detector->detectMimeTypeFromFile(__DIR__.'/../test_files/flysystem.svg');
 
-        $this->assertEquals('image/svg', $mimeType);
+        $this->assertStringStartsWith('image/svg', $mimeType);
     }
 
     /**
