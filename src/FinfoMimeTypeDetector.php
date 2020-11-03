@@ -31,9 +31,7 @@ class FinfoMimeTypeDetector implements MimeTypeDetector
 
     public function detectMimeType(string $path, $contents): ?string
     {
-        $mimeType = is_string($contents)
-            ? (@$this->finfo->buffer($contents) ?: null)
-            : null;
+        $mimeType = @$this->finfo->file($path) ?: null;
 
         if ($mimeType !== null && ! in_array($mimeType, self::INCONCLUSIVE_MIME_TYPES)) {
             return $mimeType;
