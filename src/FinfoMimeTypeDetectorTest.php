@@ -31,19 +31,6 @@ class FinfoMimeTypeDetectorTest extends TestCase
     /**
      * @test
      */
-    public function detecting_mime_type_from_contents(): void
-    {
-        /** @var string $contents */
-        $contents = file_get_contents(__DIR__.'/../test_files/flysystem.svg');
-
-        $mimeType = $this->detector->detectMimeType('flysystem.svg', $contents);
-
-        $this->assertStringStartsWith('image/svg', $mimeType);
-    }
-
-    /**
-     * @test
-     */
     public function detecting_mime_type_from_buffer(): void
     {
         /** @var string $contents */
