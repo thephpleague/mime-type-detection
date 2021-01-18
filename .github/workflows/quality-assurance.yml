@@ -43,4 +43,6 @@ jobs:
       - run: COMPOSER_OPTS='${{ matrix.composer-flags }}' vendor/bin/phpunit ${{ matrix.phpunit-flags }}
       - run: vendor/bin/phpstan analyse -l 6 src
         if: ${{ matrix.php == '7.4' }}
+      - run: vendor/bin/php-cs-fixer fix --dry-run
+        if: ${{ matrix.php == '7.4' }}
 

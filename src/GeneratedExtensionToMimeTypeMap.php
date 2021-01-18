@@ -8,6 +8,7 @@ class GeneratedExtensionToMimeTypeMap implements ExtensionToMimeTypeMap
 {
     /**
      * @var string[]
+     *
      * @internal
      */
     public const MIME_TYPES_FOR_EXTENSIONS = [

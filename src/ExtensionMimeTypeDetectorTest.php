@@ -28,7 +28,7 @@ class ExtensionMimeTypeDetectorTest extends TestCase
     {
         $detector = new ExtensionMimeTypeDetector();
         /** @var string $contents */
-        $contents = file_get_contents(__DIR__.'/../test_files/flysystem.svg');
+        $contents = file_get_contents(__DIR__ . '/../test_files/flysystem.svg');
 
         $mimeType = $detector->detectMimeTypeFromBuffer($contents);
 

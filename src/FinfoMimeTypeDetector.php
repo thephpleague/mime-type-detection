@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace League\MimeTypeDetection;
 
-use finfo;
-
 use const FILEINFO_MIME_TYPE;
+
 use const PATHINFO_EXTENSION;
+use finfo;
 
 class FinfoMimeTypeDetector implements MimeTypeDetector
 {
@@ -59,4 +59,3 @@ class FinfoMimeTypeDetector implements MimeTypeDetector
         return @$this->finfo->buffer($contents) ?: null;
     }
 }
-
