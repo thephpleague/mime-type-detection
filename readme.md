@@ -38,6 +38,13 @@ $mimeType = $detector->detectMimeTypeFromFile('existing/path.php');
 
 // Only detect by extension
 $mimeType = $detector->detectMimeTypeFromPath('any/path.php');
+
+// Constructor options
+$detector = new League\MimeTypeDetection\FinfoMimeTypeDetector(
+  $pathToMimeDatabase, // Custom mime database location, default: ''
+  $customExtensionMap, // Custom extension fallback mapp, default: null
+  $bufferSampleSize // Buffer size limit, used to take a sample (substr) from the input buffer to reduce memory consumption.
+)
 ```
 
 Extension only:
