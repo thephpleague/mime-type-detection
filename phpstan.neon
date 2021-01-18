@@ -1,2 +1,2 @@
 parameters:
-    checkMissingIterableValueType: no
+    checkMissingIterableValueType: false

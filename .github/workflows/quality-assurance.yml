@@ -1,0 +1,47 @@
+---
+name: Quality Assurance
+on:
+  push:
+    paths:
+      - src/**/*.php
+      - .github/workflows/quality-assurance.yml
+    branches:
+      - 2.x
+  pull_request:
+    paths:
+      - src/**/*.php
+      - .github/workflows/quality-assurance.yml
+    branches:
+      - main
+
+jobs:
+  phpunit:
+    name: PHPUnit tests on ${{ matrix.php }} ${{ matrix.composer-flags }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: [ '7.2', '7.3', '7.4' ]
+        composer-flags: [ '' ]
+        upgrade-aws-sdk: [ 'no' ]
+        phpunit-flags: [ '--coverage-text' ]
+        include:
+          - php: '8.0'
+            composer-flags: '--ignore-platform-req=php'
+            phpunit-flags: '--no-coverage'
+            upgrade-aws-sdk: 'yes'
+          - php: '7.2'
+            composer-flags: '--prefer-lowest'
+            phpunit-flags: '--no-coverage'
+    steps:
+      - uses: actions/checkout@v2
+      - run: docker-compose -f test_files/docker-compose.yml up -d
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: pcov
+          tools: composer:v2
+      - run: composer update --no-progress ${{ matrix.composer-flags }}
+      - run: COMPOSER_OPTS='${{ matrix.composer-flags }}' vendor/bin/phpunit ${{ matrix.phpunit-flags }}
+      - run: vendor/bin/phpstan analyse -l 6 src
+        if: ${{ matrix.php == '7.4' }}
+
