@@ -44,7 +44,7 @@ $detector = new League\MimeTypeDetection\FinfoMimeTypeDetector(
   $pathToMimeDatabase, // Custom mime database location, default: ''
   $customExtensionMap, // Custom extension fallback mapp, default: null
   $bufferSampleSize // Buffer size limit, used to take a sample (substr) from the input buffer to reduce memory consumption.
-)
+);
 ```
 
 Extension only:
@@ -80,6 +80,16 @@ Generated:
 $map = new League\MimeTypeDetection\GeneratedExtensionToMimeTypeMap();
 
 // string mime-type or NULL
+$mimeType = $map->lookupMimeType('png');
+```
+
+Overriding decorator
+
+```php
+$innerMap = new League\MimeTypeDetection\GeneratedExtensionToMimeTypeMap();
+$map = new League\MimeTypeDetection\OverridingExtensionToMimeTypeMap($innerMap, ['png' => 'custom/mimetype']);
+
+// string "custom/mimetype"
 $mimeType = $map->lookupMimeType('png');
 ```
 

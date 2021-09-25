@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.8.0 - 2021-09-25
+
+### Added
+
+- Added the decorator `OverridingExtensionToMimeTypeMap` which allows you to override values.
+
 ## 1.7.0 - 2021-01-18
 
 ### Added
