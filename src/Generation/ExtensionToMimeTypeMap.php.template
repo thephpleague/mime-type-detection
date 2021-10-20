@@ -17,4 +17,16 @@ class ExtensionToMimeTypeMapClass implements ExtensionToMimeTypeMap
     {
         return self::MIME_TYPES_FOR_EXTENSIONS[$extension] ?? null;
     }
+
+    /**
+     * @param string $mimeType
+     * @return string[]
+     */
+    public function lookupExtensions(string $mimeType): array
+    {
+        return array_keys(array_filter(self::MIME_TYPES_FOR_EXTENSIONS, function ($mimeTypeFromArray) use ($mimeType
+        ): bool {
+            return $mimeType === $mimeTypeFromArray;
+        }));
+    }
 }
