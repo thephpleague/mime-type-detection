@@ -53,8 +53,10 @@ class GeneratedExtensionToMimeTypeMapTest extends TestCase
     /**
      * @test
      * @dataProvider expectedExtensionResults
+     * @param string $mimeType
+     * @param string[] $expectedExtensions
      */
-    public function looking_up_extensions($mimeType, $expectedExtensions): void
+    public function looking_up_extensions(string $mimeType, array $expectedExtensions): void
     {
         $map = new GeneratedExtensionToMimeTypeMap();
         $actual = $map->lookupExtensions($mimeType);
