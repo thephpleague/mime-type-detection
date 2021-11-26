@@ -2,7 +2,7 @@
 
 namespace League\MimeTypeDetection;
 
-use PHPStan\Testing\TestCase;
+use PHPUnit\Framework\TestCase;
 
 class OverridingExtensionToMimeTypeMapTest extends TestCase
 {
