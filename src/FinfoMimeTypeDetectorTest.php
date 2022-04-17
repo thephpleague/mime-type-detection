@@ -21,6 +21,16 @@ class FinfoMimeTypeDetectorTest extends TestCase
     /**
      * @test
      */
+    public function detecting_a_csv(): void
+    {
+        $mimeType = $this->detector->detectMimeType('something.csv', '');
+
+        $this->assertEquals('text/csv', $mimeType);
+    }
+
+    /**
+     * @test
+     */
     public function detecting_mime_type_from_a_path(): void
     {
         $mimeType = $this->detector->detectMimeTypeFromPath('something.svg');
