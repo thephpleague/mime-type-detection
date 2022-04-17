@@ -12,6 +12,7 @@ class FlysystemProvidedMimeTypeProvider implements MimeTypeProvider
             new MimeTypeForExtension('application/mac-binhex40', 'hqx'),
             new MimeTypeForExtension('application/mac-compactpro', 'cpt'),
             new MimeTypeForExtension('text/csv', 'csv'),
+            new MimeTypeForExtension('application/octet-stream', 'phar'),
             new MimeTypeForExtension('application/octet-stream', 'bin'),
             new MimeTypeForExtension('application/octet-stream', 'dms'),
             new MimeTypeForExtension('application/octet-stream', 'lha'),
