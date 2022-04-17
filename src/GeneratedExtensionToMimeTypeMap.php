@@ -730,6 +730,7 @@ class GeneratedExtensionToMimeTypeMap implements ExtensionToMimeTypeMap
         'pgm' => 'image/x-portable-graymap',
         'pgn' => 'application/x-chess-pgn',
         'pgp' => 'application/pgp',
+        'phar' => 'application/octet-stream',
         'php' => 'application/x-httpd-php',
         'php3' => 'application/x-httpd-php',
         'php4' => 'application/x-httpd-php',
