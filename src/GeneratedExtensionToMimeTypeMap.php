@@ -933,6 +933,7 @@ class GeneratedExtensionToMimeTypeMap implements ExtensionToMimeTypeMap
         'st' => 'application/vnd.sailingtracker.track',
         'stc' => 'application/vnd.sun.xml.calc.template',
         'std' => 'application/vnd.sun.xml.draw.template',
+        'step' => 'application/STEP',
         'stf' => 'application/vnd.wt.stf',
         'sti' => 'application/vnd.sun.xml.impress.template',
         'stk' => 'application/hyperstudio',
