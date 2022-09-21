@@ -937,6 +937,7 @@ class GeneratedExtensionToMimeTypeMap implements ExtensionToMimeTypeMap
         'sti' => 'application/vnd.sun.xml.impress.template',
         'stk' => 'application/hyperstudio',
         'stl' => 'model/stl',
+        'stp' => 'application/STEP',
         'stpx' => 'model/step+xml',
         'stpxz' => 'model/step-xml+zip',
         'stpz' => 'model/step+zip',
