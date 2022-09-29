@@ -182,6 +182,8 @@ class FlysystemProvidedMimeTypeProvider implements MimeTypeProvider
             new MimeTypeForExtension('application/vnd.oasis.opendocument.text-master', 'odm'),
             new MimeTypeForExtension('application/vnd.oasis.opendocument.database', 'odb'),
             new MimeTypeForExtension('application/vnd.oasis.opendocument.text-template', 'ott'),
+            new MimeTypeForExtension('application/STEP', 'step'),
+            new MimeTypeForExtension('application/STEP', 'stp'),
         ];
     }
 }
