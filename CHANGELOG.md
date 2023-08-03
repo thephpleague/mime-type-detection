@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.12.0 - 2022-08-03
+
+### Updated
+
+- Updated lookup
+
+## 1.11.0 - 2022-04-17
+
+### Updated
+
+- Updated lookup
+
 ## 1.10.0 - 2022-04-11
 
 ### Fixed
