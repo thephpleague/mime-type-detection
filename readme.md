@@ -20,6 +20,15 @@ This package supplies a generic mime-type detection interface with a
 composer require league/mime-type-detection
 ```
 
+## Consumer interface
+
+Your code is advised to couple to the following interfaces:
+
+- `League\MimetypeDetection\MimeTypeDetector`<br/>
+  This contract is used to detect mimetypes based on file names and file contents.
+- `League\MimetypeDetection\ExtensionLookup`<br/>
+  This contract is used to lookup one or all mimetypes for a given file extension.
+
 ### Detectors
 
 Finfo with extension fallback:
@@ -52,7 +61,7 @@ Extension only:
 ```php
 $detector = new League\MimeTypeDetection\ExtensionMimeTypeDetector();
 
-// Only detect by extension
+// Only detect by extension, ignores the file contents
 $mimeType = $detector->detectMimeType('some/path.php', 'string contents');
 
 // Always returns null
@@ -63,6 +72,19 @@ $mimeType = $detector->detectMimeTypeFromFile('existing/path.php');
 
 // Only detect by extension
 $mimeType = $detector->detectMimeTypeFromPath('any/path.php');
+```
+
+## Extension lookup by mime-type
+
+The various implementations can look up the extensions that can be used for
+a given mime-type.
+
+```
+// string | null
+$extension = $detector->lookupExtension($mime$type);
+
+// array<string>
+$allExtensions = $detector->lookupAllExtensions($mimeType);
 ```
 
 ## Extension mime-type lookup
