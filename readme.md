@@ -28,6 +28,7 @@ Your code is advised to couple to the following interfaces:
   This contract is used to detect mimetypes based on file names and file contents.
 - `League\MimetypeDetection\ExtensionLookup`<br/>
   This contract is used to lookup one or all mimetypes for a given file extension.
+  Added in `1.13.0`.
 
 ### Detectors
 
@@ -75,6 +76,8 @@ $mimeType = $detector->detectMimeTypeFromPath('any/path.php');
 ```
 
 ## Extension lookup by mime-type
+
+> This feature was added in version `1.13.0`
 
 The various implementations can look up the extensions that can be used for
 a given mime-type.
