@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace League\MimeTypeDetection\Generation;
 
+use const PHP_EOL;
 use function array_unique;
 use function join;
-use const PHP_EOL;
 
 class ExtensionToMimeTypeMapGenerator
 {
