@@ -15,6 +15,7 @@ class GeneratedExtensionToMimeTypeMapTest extends TestCase
 {
     /**
      * @test
+     *
      * @dataProvider expectedLookupResults
      */
     public function looking_up_mimetypes(string $extension, ?string $expectedMimeType): void
@@ -24,7 +25,7 @@ class GeneratedExtensionToMimeTypeMapTest extends TestCase
         $this->assertEquals($expectedMimeType, $actual);
     }
 
-    public function expectedLookupResults(): Generator
+    public static function expectedLookupResults(): Generator
     {
         yield ['jpg', 'image/jpeg'];
         yield ['svg', 'image/svg+xml'];
@@ -48,5 +49,33 @@ class GeneratedExtensionToMimeTypeMapTest extends TestCase
         $storedSource = file_get_contents(__DIR__ . '/GeneratedExtensionToMimeTypeMap.php');
 
         $this->assertEquals($source, $storedSource);
+    }
+
+    /**
+     * @test
+     *
+     * @dataProvider expectedExtensionResults
+     *
+     * @param string $mimeType
+     * @param string[] $expectedExtensions
+     */
+    public function looking_up_extensions(string $mimeType, array $expectedExtensions): void
+    {
+        // arrange
+        $map = new GeneratedExtensionToMimeTypeMap();
+
+        // act
+        $actual = $map->lookupAllExtensions($mimeType);
+
+        // assert
+        $this->assertEquals($expectedExtensions, $actual);
+    }
+
+    public static function expectedExtensionResults(): Generator
+    {
+        yield ['application/vnd.openxmlformats-officedocument.wordprocessingml.document', ['docx']];
+        yield ['image/jpeg', ['jpeg', 'jpg', 'jpe']];
+        yield ['image/svg+xml', ['svg', 'svgz']];
+        yield ['lol/lol', []];
     }
 }
