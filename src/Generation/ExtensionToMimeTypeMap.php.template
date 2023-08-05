@@ -4,29 +4,37 @@ declare(strict_types=1);
 
 namespace League\MimeTypeDetection;
 
-class ExtensionToMimeTypeMapClass implements ExtensionToMimeTypeMap
+class ExtensionToMimeTypeMapClass implements ExtensionToMimeTypeMap, ExtensionLookup
 {
     /**
-     * @var string[]
+     * @var array<string, string>
      *
      * @internal
      */
-    public const MIME_TYPES_FOR_EXTENSIONS = [];
+    public const MIME_TYPES_FOR_EXTENSIONS = ['ext2mime'];
+
+    /**
+     * @var array<string, string>
+     *
+     * @internal
+     */
+    public const EXTENSIONS_FOR_MIME_TIMES = ['mime2ext'];
 
     public function lookupMimeType(string $extension): ?string
     {
         return self::MIME_TYPES_FOR_EXTENSIONS[$extension] ?? null;
     }
 
+    public function lookupExtension(string $mimetype): ?string
+    {
+        return self::EXTENSIONS_FOR_MIME_TIMES[$mimetype][0] ?? null;
+    }
+
     /**
-     * @param string $mimeType
      * @return string[]
      */
-    public function lookupExtensions(string $mimeType): array
+    public function lookupAllExtensions(string $mimetype): array
     {
-        return array_keys(array_filter(self::MIME_TYPES_FOR_EXTENSIONS, function ($mimeTypeFromArray) use ($mimeType
-        ): bool {
-            return $mimeType === $mimeTypeFromArray;
-        }));
+        return self::EXTENSIONS_FOR_MIME_TIMES[$mimetype] ?? [];
     }
 }
