@@ -644,6 +644,7 @@ class GeneratedExtensionToMimeTypeMap implements ExtensionToMimeTypeMap, Extensi
         'nbp' => 'application/vnd.wolfram.player',
         'nc' => 'application/x-netcdf',
         'ncx' => 'application/x-dtbncx+xml',
+        'ndjson' => 'application/x-ndjson',
         'nfo' => 'text/x-nfo',
         'ngdat' => 'application/vnd.nokia.n-gage.data',
         'nitf' => 'application/vnd.nitf',
