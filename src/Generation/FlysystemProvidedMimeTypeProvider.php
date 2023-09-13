@@ -185,7 +185,7 @@ class FlysystemProvidedMimeTypeProvider implements MimeTypeProvider
             new MimeTypeForExtension('application/vnd.oasis.opendocument.text-template', 'ott'),
             new MimeTypeForExtension('application/STEP', 'step'),
             new MimeTypeForExtension('application/STEP', 'stp'),
-            new MimeTypeForExtension('application/tajima', 'dst'),
+            new MimeTypeForExtension('application/octet-stream', 'dst'),
             new MimeTypeForExtension('application/octet-stream', 'pv'),
             new MimeTypeForExtension('application/octet-stream', 'pxf'),
         ];
