@@ -239,6 +239,7 @@ class GeneratedExtensionToMimeTypeMap implements ExtensionToMimeTypeMap, Extensi
         'drle' => 'image/dicom-rle',
         'dsc' => 'text/prs.lines.tag',
         'dssc' => 'application/dssc+der',
+        'dst' => 'application/octet-stream',
         'dtb' => 'application/x-dtbook+xml',
         'dtd' => 'application/xml-dtd',
         'dts' => 'audio/vnd.dts',
@@ -791,8 +792,10 @@ class GeneratedExtensionToMimeTypeMap implements ExtensionToMimeTypeMap, Extensi
         'pti' => 'image/prs.pti',
         'ptid' => 'application/vnd.pvi.ptid1',
         'pub' => 'application/x-mspublisher',
+        'pv' => 'application/octet-stream',
         'pvb' => 'application/vnd.3gpp.pic-bw-var',
         'pwn' => 'application/vnd.3m.post-it-notes',
+        'pxf' => 'application/octet-stream',
         'pya' => 'audio/vnd.ms-playready.media.pya',
         'pyo' => 'model/vnd.pytha.pyox',
         'pyox' => 'model/vnd.pytha.pyox',
@@ -1336,7 +1339,7 @@ class GeneratedExtensionToMimeTypeMap implements ExtensionToMimeTypeMap, Extensi
         'application/n-quads' => ['nq'],
         'application/n-triples' => ['nt'],
         'application/node' => ['cjs'],
-        'application/octet-stream' => ['bin', 'dms', 'lrf', 'mar', 'so', 'dist', 'distz', 'pkg', 'bpk', 'dump', 'elc', 'deploy', 'exe', 'dll', 'deb', 'dmg', 'iso', 'img', 'msi', 'msp', 'msm', 'buffer', 'phar', 'lha', 'lzh', 'class', 'sea', 'dmn', 'bpmn', 'kdb', 'sst', 'csr'],
+        'application/octet-stream' => ['bin', 'dms', 'lrf', 'mar', 'so', 'dist', 'distz', 'pkg', 'bpk', 'dump', 'elc', 'deploy', 'exe', 'dll', 'deb', 'dmg', 'iso', 'img', 'msi', 'msp', 'msm', 'buffer', 'phar', 'lha', 'lzh', 'class', 'sea', 'dmn', 'bpmn', 'kdb', 'sst', 'csr', 'dst', 'pv', 'pxf'],
         'application/oda' => ['oda'],
         'application/oebps-package+xml' => ['opf'],
         'application/ogg' => ['ogx'],
@@ -2270,6 +2273,7 @@ class GeneratedExtensionToMimeTypeMap implements ExtensionToMimeTypeMap, Extensi
         'text/x-scriptzsh' => ['zsh'],
         'application/cdr' => ['cdr'],
         'application/STEP' => ['step', 'stp'],
+        'application/x-ndjson' => ['ndjson'],
     ];
 
     public function lookupMimeType(string $extension): ?string
