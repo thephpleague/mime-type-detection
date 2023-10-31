@@ -100,6 +100,7 @@ class GeneratedExtensionToMimeTypeMap implements ExtensionToMimeTypeMap, Extensi
         'boz' => 'application/x-bzip2',
         'bpk' => 'application/octet-stream',
         'bpmn' => 'application/octet-stream',
+        'brf' => 'application/braille',
         'bsp' => 'model/vnd.valve.source.compiled-map',
         'btf' => 'image/prs.btif',
         'btif' => 'image/prs.btif',
