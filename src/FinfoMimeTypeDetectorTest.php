@@ -101,13 +101,27 @@ class FinfoMimeTypeDetectorTest extends TestCase
     /**
      * @test
      */
-    public function detecting_uses_extensions_when_a_resource_is_presented(): void
+    public function detecting_uses_extensions_when_a_invalid_resource_is_presented(): void
     {
         /** @var resource $handle */
         $handle = fopen(__DIR__ . '/../test_files/flysystem.svg', 'r+');
         fclose($handle);
 
         $mimeType = $this->detector->detectMimeType('flysystem.svg', $handle);
+
+        $this->assertEquals('image/svg+xml', $mimeType);
+    }
+
+    /**
+     * @test
+     */
+    public function detecting_uses_stream_contents_when_a_valid_resource_is_presented(): void
+    {
+        /** @var resource $handle */
+        $handle = fopen(__DIR__ . '/../test_files/flysystem.svg', 'r+');
+
+        $mimeType = $this->detector->detectMimeType('flysystem.unknown', $handle);
+        fclose($handle);
 
         $this->assertEquals('image/svg+xml', $mimeType);
     }
