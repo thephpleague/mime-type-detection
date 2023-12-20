@@ -53,9 +53,12 @@ class FinfoMimeTypeDetector implements MimeTypeDetector, ExtensionLookup
 
     public function detectMimeType(string $path, $contents): ?string
     {
-        $mimeType = is_string($contents)
-            ? (@$this->finfo->buffer($this->takeSample($contents)) ?: null)
-            : null;
+        $mimeType = null;
+        if (is_string($contents)) {
+            $mimeType = @$this->finfo->buffer($this->takeSample($contents));
+        } elseif (is_resource($contents) && get_resource_type($contents) === 'stream') {
+            $mimeType = @$this->finfo->buffer(stream_get_contents($contents, $this->bufferSampleSize, 0));
+        }
 
         if ($mimeType !== null && ! in_array($mimeType, $this->inconclusiveMimetypes)) {
             return $mimeType;
