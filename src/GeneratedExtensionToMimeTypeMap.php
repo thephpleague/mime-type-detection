@@ -2275,6 +2275,7 @@ class GeneratedExtensionToMimeTypeMap implements ExtensionToMimeTypeMap, Extensi
         'application/cdr' => ['cdr'],
         'application/STEP' => ['step', 'stp'],
         'application/x-ndjson' => ['ndjson'],
+        'application/braille' => ['brf'],
     ];
 
     public function lookupMimeType(string $extension): ?string
