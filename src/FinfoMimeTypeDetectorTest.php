@@ -125,4 +125,18 @@ class FinfoMimeTypeDetectorTest extends TestCase
 
         $this->assertEquals('image/svg+xml', $mimeType);
     }
+
+    /**
+     * @test
+     */
+    public function detecting_keeps_stream_contents_positions_unchanged(): void
+    {
+        /** @var resource $handle */
+        $handle = fopen(__DIR__ . '/../test_files/flysystem.svg', 'r+');
+        fseek($handle, 10);
+        $mimeType = $this->detector->detectMimeType('flysystem.unknown', $handle);
+        $this->assertEquals('image/svg+xml', $mimeType);
+        $this->assertEquals(10, ftell($handle));
+        fclose($handle);
+    }
 }
