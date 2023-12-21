@@ -39,16 +39,28 @@ class FinfoMimeTypeDetector implements MimeTypeDetector, ExtensionLookup
      */
     private $inconclusiveMimetypes;
 
+    /**
+     * @var bool
+     */
+    private $ignoreNonSeekableStreams;
+
+    /**
+     * Buffer size to read from streams if no other bufferSampleSize is defined.
+     */
+    const STREAM_BUFFER_SAMPLE_SIZE_DEFAULT = 4100;
+
     public function __construct(
         string $magicFile = '',
         ExtensionToMimeTypeMap $extensionMap = null,
         ?int $bufferSampleSize = null,
-        array $inconclusiveMimetypes = self::INCONCLUSIVE_MIME_TYPES
+        array $inconclusiveMimetypes = self::INCONCLUSIVE_MIME_TYPES,
+        bool $ignoreNonSeekableStreams = true
     ) {
         $this->finfo = new finfo(FILEINFO_MIME_TYPE, $magicFile);
         $this->extensionMap = $extensionMap ?: new GeneratedExtensionToMimeTypeMap();
         $this->bufferSampleSize = $bufferSampleSize;
         $this->inconclusiveMimetypes = $inconclusiveMimetypes;
+        $this->ignoreNonSeekableStreams = $ignoreNonSeekableStreams;
     }
 
     public function detectMimeType(string $path, $contents): ?string
@@ -56,10 +68,8 @@ class FinfoMimeTypeDetector implements MimeTypeDetector, ExtensionLookup
         $mimeType = null;
         if (is_string($contents)) {
             $mimeType = @$this->finfo->buffer($this->takeSample($contents));
-        } elseif (is_resource($contents) && get_resource_type($contents) === 'stream') {
-            $streamPosition = ftell($contents);
-            $mimeType = @$this->finfo->buffer(stream_get_contents($contents, $this->bufferSampleSize, 0));
-            fseek($contents, $streamPosition);
+        } elseif (is_resource($contents)) {
+            $mimeType = @$this->finfo->buffer($this->takeResourceSample($contents));
         }
 
         if ($mimeType !== null && ! in_array($mimeType, $this->inconclusiveMimetypes)) {
@@ -93,6 +103,48 @@ class FinfoMimeTypeDetector implements MimeTypeDetector, ExtensionLookup
         }
 
         return (string) substr($contents, 0, $this->bufferSampleSize);
+    }
+
+    /**
+     * Fetches a sample of a resource while maintaining its pointer.
+     *
+     * Non-seekable resources are skipped by default because their pointer can't
+     * be maintained.
+     */
+    private function takeResourceSample($contents): string
+    {
+        if (is_resource($contents) && get_resource_type($contents) === 'stream') {
+            $streamMetaData = stream_get_meta_data($contents);
+            if ($streamMetaData['seekable']) {
+                $streamPosition = ftell($contents);
+            } elseif ($this->ignoreNonSeekableStreams) {
+                return '';
+            }
+
+            // Memory optimization: given a length stream_get_contents()
+            // immediately allocates an internal buffer.
+            // However, stream_copy_to_stream() reads up to the defined length
+            // without pre-allocating any extra buffer.
+            // Given the relatively large STREAM_BUFFER_SAMPLE_SIZE_DEFAULT this
+            // avoids unnecessary memory hogging.
+            $streamContentBuffer = fopen("php://memory", "w+b");
+            $sampleSize = $this->bufferSampleSize ?? self::STREAM_BUFFER_SAMPLE_SIZE_DEFAULT;
+            stream_copy_to_stream(
+                $contents,
+                $streamContentBuffer,
+                $sampleSize,
+                0
+            );
+            rewind($contents);
+            rewind($streamContentBuffer);
+            $streamSample = stream_get_contents($streamContentBuffer);
+            fclose($streamContentBuffer);
+            if (isset($streamPosition)) {
+                fseek($contents, $streamPosition);
+            }
+            return $streamSample;
+        }
+        return '';
     }
 
     public function lookupExtension(string $mimetype): ?string

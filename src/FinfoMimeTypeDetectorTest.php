@@ -139,4 +139,36 @@ class FinfoMimeTypeDetectorTest extends TestCase
         $this->assertEquals(10, ftell($handle));
         fclose($handle);
     }
+
+    /**
+     * @test
+     */
+    public function detecting_non_seekable_streams(): void
+    {
+        /** @var resource $handle */
+        $handle = fopen('https://github.com/thephpleague/mime-type-detection', 'r');
+        $mimeType = $this->detector->detectMimeType('flysystem.unknown', $handle);
+        $this->assertEquals(null, $mimeType);
+        $this->assertEquals(0, ftell($handle));
+
+        $nonSeekableDetector = new FinfoMimeTypeDetector(
+            '',
+            null,
+            null, [
+                'application/x-empty',
+                'text/plain',
+                'text/x-asm',
+                'application/octet-stream',
+                'inode/x-empty',
+            ],
+            false
+        );
+        $mimeType = $nonSeekableDetector->detectMimeType('flysystem.unknown', $handle);
+        $this->assertEquals('text/html', $mimeType);
+        // Because this stream is non seekable it's position will be where the
+        // detectors buffer is.
+        $this->assertEquals(FinfoMimeTypeDetector::STREAM_BUFFER_SAMPLE_SIZE_DEFAULT, ftell($handle));
+
+        fclose($handle);
+    }
 }
