@@ -129,6 +129,7 @@ class FinfoMimeTypeDetector implements MimeTypeDetector, ExtensionLookup
             // avoids unnecessary memory hogging.
             $streamContentBuffer = fopen("php://memory", "w+b");
             $sampleSize = $this->bufferSampleSize ?? self::STREAM_BUFFER_SAMPLE_SIZE_DEFAULT;
+            rewind($contents);
             stream_copy_to_stream(
                 $contents,
                 $streamContentBuffer,
