@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.15.0 - 2022-10-17
+
+- Updated lookup
+
 ## 1.14.0 - 2022-10-17
 
 ### Updated
