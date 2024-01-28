@@ -39,6 +39,11 @@ class FinfoMimeTypeDetector implements MimeTypeDetector, ExtensionLookup
      */
     private $inconclusiveMimetypes;
 
+    /**
+     * Buffer size to read from streams if no other bufferSampleSize is defined.
+     */
+    const STREAM_BUFFER_SAMPLE_SIZE_DEFAULT = 4100;
+
     public function __construct(
         string $magicFile = '',
         ExtensionToMimeTypeMap $extensionMap = null,
@@ -53,9 +58,17 @@ class FinfoMimeTypeDetector implements MimeTypeDetector, ExtensionLookup
 
     public function detectMimeType(string $path, $contents): ?string
     {
-        $mimeType = is_string($contents)
-            ? (@$this->finfo->buffer($this->takeSample($contents)) ?: null)
-            : null;
+        $mimeType = null;
+        if (is_string($contents)) {
+            $mimeType = @$this->finfo->buffer($this->takeSample($contents));
+        } elseif (
+            is_resource($contents)
+            && get_resource_type($contents) === 'stream'
+            && ($streamMetaData = stream_get_meta_data($contents))
+            && !empty($streamMetaData['seekable'])
+        ) {
+            $mimeType = @$this->finfo->buffer($this->takeResourceSample($contents));
+        }
 
         if ($mimeType !== null && ! in_array($mimeType, $this->inconclusiveMimetypes)) {
             return $mimeType;
@@ -88,6 +101,37 @@ class FinfoMimeTypeDetector implements MimeTypeDetector, ExtensionLookup
         }
 
         return (string) substr($contents, 0, $this->bufferSampleSize);
+    }
+
+    /**
+     * Fetches a sample of a resource while maintaining its pointer.
+     */
+    private function takeResourceSample($contents): string
+    {
+        if (is_resource($contents) && get_resource_type($contents) === 'stream') {
+            // Memory optimization: given a length stream_get_contents()
+            // immediately allocates an internal buffer.
+            // However, stream_copy_to_stream() reads up to the defined length
+            // without pre-allocating any extra buffer.
+            // Given the relatively large STREAM_BUFFER_SAMPLE_SIZE_DEFAULT this
+            // avoids unnecessary memory hogging.
+            $streamContentBuffer = fopen('php://temp/maxmemory:' . self::STREAM_BUFFER_SAMPLE_SIZE_DEFAULT, 'w+b');
+
+            $streamPosition = ftell($contents);
+            rewind($contents);
+            stream_copy_to_stream(
+                $contents,
+                $streamContentBuffer,
+                $this->bufferSampleSize ?? self::STREAM_BUFFER_SAMPLE_SIZE_DEFAULT,
+                0
+            );
+            rewind($streamContentBuffer);
+            $streamSample = stream_get_contents($streamContentBuffer);
+            fclose($streamContentBuffer);
+            fseek($contents, $streamPosition);
+            return $streamSample;
+        }
+        return '';
     }
 
     public function lookupExtension(string $mimetype): ?string
