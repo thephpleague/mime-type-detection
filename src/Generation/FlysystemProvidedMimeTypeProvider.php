@@ -190,6 +190,7 @@ class FlysystemProvidedMimeTypeProvider implements MimeTypeProvider
             new MimeTypeForExtension('application/octet-stream', 'pv'),
             new MimeTypeForExtension('application/octet-stream', 'pxf'),
             new MimeTypeForExtension('application/braille', 'brf'),
+            new MimeTypeForExtension('image/qoi', 'qoi'),
         ];
     }
 }
