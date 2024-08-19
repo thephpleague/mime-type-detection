@@ -86,6 +86,7 @@ class FlysystemProvidedMimeTypeProvider implements MimeTypeProvider
             new MimeTypeForExtension('image/jpeg', 'jpg'),
             new MimeTypeForExtension('image/jpeg', 'jpeg'),
             new MimeTypeForExtension('image/jpeg', 'jpe'),
+            new MimeTypeForExtension('image/jpeg', 'jfif'),
             new MimeTypeForExtension('image/png', 'png'),
             new MimeTypeForExtension('image/gif', 'gif'),
             new MimeTypeForExtension('image/bmp', 'bmp'),
