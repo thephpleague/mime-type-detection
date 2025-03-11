@@ -25,7 +25,7 @@ class FlysystemProvidedMimeTypeProvider implements MimeTypeProvider
             new MimeTypeForExtension('application/octet-stream', 'dll'),
             new MimeTypeForExtension('application/oda', 'oda'),
             new MimeTypeForExtension('application/pdf', 'pdf'),
-            new MimeTypeForExtension('application/pdf', 'ai'),
+            new MimeTypeForExtension('application/illustrator', 'ai'),
             new MimeTypeForExtension('application/postscript', 'eps'),
             new MimeTypeForExtension('application/epub+zip', 'epub'),
             new MimeTypeForExtension('application/postscript', 'ps'),
