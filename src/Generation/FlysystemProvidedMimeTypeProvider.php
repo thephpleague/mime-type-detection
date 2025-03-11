@@ -91,6 +91,7 @@ class FlysystemProvidedMimeTypeProvider implements MimeTypeProvider
             new MimeTypeForExtension('image/bmp', 'bmp'),
             new MimeTypeForExtension('image/tiff', 'tiff'),
             new MimeTypeForExtension('image/tiff', 'tif'),
+            new MimeTypeForExtension('image/heic', 'heic'),
             new MimeTypeForExtension('image/svg+xml', 'svg'),
             new MimeTypeForExtension('text/css', 'css'),
             new MimeTypeForExtension('text/html', 'html'),
