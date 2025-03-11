@@ -20,6 +20,7 @@ class FlysystemProvidedMimeTypeProvider implements MimeTypeProvider
             new MimeTypeForExtension('application/octet-stream', 'exe'),
             new MimeTypeForExtension('application/octet-stream', 'class'),
             new MimeTypeForExtension('application/x-photoshop', 'psd'),
+            new MimeTypeForExtension('application/x-indesign', 'indd'),
             new MimeTypeForExtension('application/octet-stream', 'so'),
             new MimeTypeForExtension('application/octet-stream', 'sea'),
             new MimeTypeForExtension('application/octet-stream', 'dll'),
