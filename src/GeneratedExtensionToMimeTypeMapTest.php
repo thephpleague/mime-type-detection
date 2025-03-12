@@ -74,7 +74,7 @@ class GeneratedExtensionToMimeTypeMapTest extends TestCase
     public static function expectedExtensionResults(): Generator
     {
         yield ['application/vnd.openxmlformats-officedocument.wordprocessingml.document', ['docx']];
-        yield ['image/jpeg', ['jpeg', 'jpg', 'jpe']];
+        yield ['image/jpeg', ['jpeg', 'jpg', 'jpe', 'jfif']];
         yield ['image/svg+xml', ['svg', 'svgz']];
         yield ['lol/lol', []];
     }
