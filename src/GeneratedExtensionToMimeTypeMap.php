@@ -23,7 +23,7 @@ class GeneratedExtensionToMimeTypeMap implements ExtensionToMimeTypeMap, Extensi
         '7zip' => 'application/x-7z-compressed',
         '123' => 'application/vnd.lotus-1-2-3',
         'aab' => 'application/x-authorware-bin',
-        'aac' => 'audio/acc',
+        'aac' => 'audio/aac',
         'aam' => 'application/x-authorware-map',
         'aas' => 'application/x-authorware-seg',
         'abw' => 'application/x-abiword',
