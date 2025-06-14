@@ -2282,7 +2282,7 @@ class GeneratedExtensionToMimeTypeMap implements ExtensionToMimeTypeMap, Extensi
         'application/gpg-keys' => ['gpg'],
         'application/x-pkcs7' => ['rsa'],
         'video/3gp' => ['3gp'],
-        'audio/acc' => ['aac'],
+        'audio/aac' => ['aac'],
         'application/vnd.mpegurl' => ['m4u'],
         'application/videolan' => ['vlc'],
         'audio/x-au' => ['au'],
