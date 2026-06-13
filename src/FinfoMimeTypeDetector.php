@@ -73,12 +73,31 @@ class FinfoMimeTypeDetector implements MimeTypeDetector, ExtensionLookup
 
     public function detectMimeTypeFromFile(string $path): ?string
     {
+        if ( ! $this->isLocalFilePath($path)) {
+            return null;
+        }
+
         return @$this->finfo->file($path) ?: null;
     }
 
     public function detectMimeTypeFromBuffer(string $contents): ?string
     {
         return @$this->finfo->buffer($this->takeSample($contents)) ?: null;
+    }
+
+    /**
+     * finfo::file() honours PHP stream wrappers, so a caller-supplied path using a scheme such
+     * as http://, ftp://, php://, data://, phar:// or expect:// turns MIME detection into an
+     * SSRF, file-disclosure or (with some extensions) command-execution primitive. Only local
+     * filesystem paths are read: a plain path with no wrapper, or the file:// wrapper.
+     */
+    private function isLocalFilePath(string $path): bool
+    {
+        if (preg_match('#^([a-zA-Z][a-zA-Z0-9+.\-]*)://#', $path, $matches) !== 1) {
+            return true;
+        }
+
+        return strtolower($matches[1]) === 'file';
     }
 
     private function takeSample(string $contents): string

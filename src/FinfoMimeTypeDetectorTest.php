@@ -101,6 +101,35 @@ class FinfoMimeTypeDetectorTest extends TestCase
     /**
      * @test
      */
+    public function detecting_from_a_file_ignores_remote_and_wrapper_schemes(): void
+    {
+        $paths = [
+            'http://localhost/whatever',
+            'ftp://localhost/whatever',
+            'php://filter/resource=' . __FILE__,
+            'data://text/plain,hello',
+            'phar://whatever.phar/file',
+        ];
+
+        foreach ($paths as $path) {
+            $this->assertNull($this->detector->detectMimeTypeFromFile($path), $path);
+        }
+    }
+
+    /**
+     * @test
+     */
+    public function detecting_from_a_file_still_reads_local_and_file_scheme_paths(): void
+    {
+        $location = __DIR__ . '/../test_files/flysystem.svg';
+
+        $this->assertStringStartsWith('image/svg', $this->detector->detectMimeTypeFromFile($location));
+        $this->assertStringStartsWith('image/svg', $this->detector->detectMimeTypeFromFile('file://' . $location));
+    }
+
+    /**
+     * @test
+     */
     public function detecting_uses_extensions_when_a_resource_is_presented(): void
     {
         /** @var resource $handle */
