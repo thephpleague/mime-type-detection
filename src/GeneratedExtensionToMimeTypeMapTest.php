@@ -68,6 +68,8 @@ class GeneratedExtensionToMimeTypeMapTest extends TestCase
         $actual = $map->lookupAllExtensions($mimeType);
 
         // assert
+        sort($expectedExtensions);
+        sort($actual);
         $this->assertEquals($expectedExtensions, $actual);
     }
 
