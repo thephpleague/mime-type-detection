@@ -101,7 +101,7 @@ class FinfoMimeTypeDetectorTest extends TestCase
     /**
      * @test
      */
-    public function detecting_uses_extensions_when_a_resource_is_presented(): void
+    public function detecting_uses_extensions_when_a_invalid_resource_is_presented(): void
     {
         /** @var resource $handle */
         $handle = fopen(__DIR__ . '/../test_files/flysystem.svg', 'r+');
@@ -110,5 +110,46 @@ class FinfoMimeTypeDetectorTest extends TestCase
         $mimeType = $this->detector->detectMimeType('flysystem.svg', $handle);
 
         $this->assertEquals('image/svg+xml', $mimeType);
+    }
+
+    /**
+     * @test
+     */
+    public function detecting_uses_stream_contents_when_a_valid_resource_is_presented(): void
+    {
+        /** @var resource $handle */
+        $handle = fopen(__DIR__ . '/../test_files/flysystem.svg', 'r+');
+
+        $mimeType = $this->detector->detectMimeType('flysystem.unknown', $handle);
+        fclose($handle);
+
+        $this->assertEquals('image/svg+xml', $mimeType);
+    }
+
+    /**
+     * @test
+     */
+    public function detecting_keeps_stream_contents_positions_unchanged(): void
+    {
+        /** @var resource $handle */
+        $handle = fopen(__DIR__ . '/../test_files/flysystem.svg', 'r+');
+        fseek($handle, 10);
+        $mimeType = $this->detector->detectMimeType('flysystem.unknown', $handle);
+        $this->assertEquals('image/svg+xml', $mimeType);
+        $this->assertEquals(10, ftell($handle));
+        fclose($handle);
+    }
+
+    /**
+     * @test
+     */
+    public function detecting_non_seekable_streams_are_not_sampling(): void
+    {
+        /** @var resource $handle */
+        $handle = fopen('https://github.com/thephpleague/mime-type-detection', 'r');
+        $mimeType = $this->detector->detectMimeType('flysystem.unknown', $handle);
+        $this->assertEquals(null, $mimeType);
+        $this->assertEquals(0, ftell($handle));
+        fclose($handle);
     }
 }
