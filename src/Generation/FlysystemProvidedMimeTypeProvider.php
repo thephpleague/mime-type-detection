@@ -156,7 +156,7 @@ class FlysystemProvidedMimeTypeProvider implements MimeTypeProvider
             new MimeTypeForExtension('video/mp4', 'f4v'),
             new MimeTypeForExtension('video/webm', 'webm'),
             new MimeTypeForExtension('audio/x-aac', 'aac'),
-            new MimeTypeForExtension('audio/acc', 'aac'),
+            new MimeTypeForExtension('audio/aac', 'aac'),
             new MimeTypeForExtension('application/vnd.mpegurl', 'm4u'),
             new MimeTypeForExtension('text/plain', 'm3u'),
             new MimeTypeForExtension('application/xspf+xml', 'xspf'),
