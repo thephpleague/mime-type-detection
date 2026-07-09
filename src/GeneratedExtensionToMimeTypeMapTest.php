@@ -10,6 +10,7 @@ use League\MimeTypeDetection\Generation\ExtensionToMimeTypeMapGenerator;
 use League\MimeTypeDetection\Generation\FlysystemProvidedMimeTypeProvider;
 use League\MimeTypeDetection\Generation\JsHttpMimeDBMimeTypeProvider;
 use PHPUnit\Framework\TestCase;
+use function sort;
 
 class GeneratedExtensionToMimeTypeMapTest extends TestCase
 {
@@ -61,11 +62,14 @@ class GeneratedExtensionToMimeTypeMapTest extends TestCase
      */
     public function looking_up_extensions(string $mimeType, array $expectedExtensions): void
     {
+        sort($expectedExtensions);
+
         // arrange
         $map = new GeneratedExtensionToMimeTypeMap();
 
         // act
         $actual = $map->lookupAllExtensions($mimeType);
+        sort($actual);
 
         // assert
         $this->assertEquals($expectedExtensions, $actual);
